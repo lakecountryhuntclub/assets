@@ -1,0 +1,17 @@
+name: Purge JSdelivr Cache
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+    workflow_dispatch:
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge
+        uses: egad13/purge-jsdelivr-cache@v1.0.3
+        with:
+          url:
+          attempts: 3

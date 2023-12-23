@@ -1,0 +1,2 @@
+# assets
+Static Assets CDN

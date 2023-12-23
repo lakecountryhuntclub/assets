@@ -1,6 +1,6 @@
 # Lake Country Hunt Club Static Assets
 
-> [!NOTE] Note
+> [!NOTE]
 > This repository serves as a CDN for various Lake Country Hunt Club static assets. It is not intended to be used as
 > a standalone repository, but rather as the source for the assets used in other repositories/projects and served
 > via [jsDelivr](https://www.jsdelivr.com/) CDN under the root path

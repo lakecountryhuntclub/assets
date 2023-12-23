@@ -5,7 +5,7 @@ on:
       - main
       - master
       - develop
-    workflow_dispatch:
+  workflow_dispatch:
 jobs:
   purge:
     runs-on: ubuntu-latest
@@ -39,3 +39,4 @@ jobs:
         uses: egad13/purge-jsdelivr-cache@v1
         with:
           url: ${{ steps.purge_urls.outputs.urls }}
+          attempts: 5

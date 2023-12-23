@@ -10,8 +10,20 @@ jobs:
   purge:
     runs-on: ubuntu-latest
     steps:
-      - name: Purge
-        uses: egad13/purge-jsdelivr-cache@v1.0.3
+      - name: Checkout main
+        uses: actions/checkout@v3
         with:
-          url:
-          attempts: 3
+          ref: ${{ github.ref }}
+      - name: Determine CDN URLs to Purge
+        id: purge_urls
+        run: |
+          baseUrl="https://cdn.jsdelivr.net/gh/${{ github.repository }}@main"
+          urls=""
+          for f in `find dist -name "*.js" -type f`; do
+            urls+="${baseUrl}/${f},"
+          done
+          echo "urls=${urls%,*}" >> $GITHUB_OUTPUT
+      - name: Purge CDN Caches
+        uses: egad13/purge-jsdelivr-cache@v1
+        with:
+          url: ${{ steps.purge_urls.outputs.urls }}

@@ -19,7 +19,19 @@ jobs:
         run: |
           baseUrl="https://cdn.jsdelivr.net/gh/${{ github.repository }}@main"
           urls=""
-          for f in `find dist -name "*.js" -type f`; do
+          for f in `find scripts -name "*.js" -type f`; do
+            urls+="${baseUrl}/${f},"
+          done
+          for f in `find styles -name "*.css" -type f`; do
+            urls+="${baseUrl}/${f},"
+          done
+          for f in `find styles -name "*.css.map" -type f`; do
+            urls+="${baseUrl}/${f},"
+          done
+          for f in `find images -name "*.png" -type f`; do
+            urls+="${baseUrl}/${f},"
+          done
+          for f in `find images -name "*.jpg" -type f`; do
             urls+="${baseUrl}/${f},"
           done
           echo "urls=${urls%,*}" >> $GITHUB_OUTPUT
